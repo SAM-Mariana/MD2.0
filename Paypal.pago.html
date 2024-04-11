@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal</title>
+    <link rel="stylesheet" href="Paypal.css">
+    <link rel="icon" href="" type="image/png"> <!-- Enlace al ícono de la página -->
+    <style>
+        /* Estilos adicionales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 36px;
+            color: #381da6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .tabs {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .tab {
+            float: left;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .tab:hover {
+            background-color: #ddd;
+        }
+        .tab.active {
+            background-color: #f9f9f9;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PayPal</h1>
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(event, 'pago')">Realizar Pago</div>
+            <div class="tab" onclick="openTab(event, 'crearCuenta')">Crear Cuenta</div>
+            <div class="tab" onclick="openTab(event, 'recuperarContrasena')">Recuperar Contraseña</div>
+        </div>
+        <section id="pago" class="tabcontent">
+            <section id="paypal-form">
+                <form method="post" action="procesar_pago.php">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Pagar</button>
+                </form>
+            </section>
+        </section>
+        <section id="crearCuenta" class="tabcontent">
+            <form method="post" action="procesar_creacion_cuenta.php">
+                <div class="form-group">
+                    <label for="emailCrear">Correo electrónico:</label>
+                    <input type="email" id="emailCrear" name="emailCrear" required>
+                </div>
+                <!-- Otros campos para crear cuenta -->
+                <button type="submit">Crear Cuenta</button>
+            </form>
+        </section>
+        <section id="recuperarContrasena" class="tabcontent">
+            <form method="post" action="procesar_recuperacion_contrasena.php">
+                <div class="form-group">
+                    <label for="emailRecuperar">Correo electrónico:</label>
+                    <input type="email" id="emailRecuperar" name="emailRecuperar" required>
+                </div>
+                <!-- Otros campos para recuperar contraseña -->
+                <button type="submit">Recuperar Contraseña</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        function openTab(event, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
